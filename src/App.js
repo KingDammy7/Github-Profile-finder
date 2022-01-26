@@ -7,7 +7,7 @@ import Users from "./components/users/Users";
 import Alert from "./components/Alerts";
 import axios from "axios";
 import React, { Component, Fragment } from "react";
-import ReactPaginate from "react-paginate";
+
 
 let githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
 let githubClientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
