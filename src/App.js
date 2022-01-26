@@ -8,12 +8,9 @@ import Alert from "./components/Alerts";
 import axios from "axios";
 import React, { Component, Fragment } from "react";
 import ReactPaginate from "react-paginate";
-import { data } from "autoprefixer";
-
 
 let githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
 let githubClientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
-
 
 class App extends Component {
 	state = {
@@ -27,7 +24,6 @@ class App extends Component {
 		totalPages: 0,
 		currentPageNo: 0,
 	};
-
 
 	// Search Github Users
 	searchUsers = async (text, currentPage) => {
@@ -55,14 +51,13 @@ class App extends Component {
 	// 	return data;
 	// };
 
-		// const handlePageClick =async (data) => {
-		// console.log(data.selected)
-		// let currentPage = data.selected + 1
-		
-		// const searchUsersServer = await this.searchUsers(currentPage);
-		
-		// setUsers(searchUsersServer);
-	
+	// const handlePageClick =async (data) => {
+	// console.log(data.selected)
+	// let currentPage = data.selected + 1
+
+	// const searchUsersServer = await this.searchUsers(currentPage);
+
+	// setUsers(searchUsersServer);
 
 	// Get single Github user
 	getUser = async (username) => {
@@ -87,7 +82,6 @@ class App extends Component {
 			loading: false,
 		});
 	};
-	
 
 	//Clear users from state
 	clearUsers = () => this.setState({ users: [], loading: false });
@@ -98,29 +92,28 @@ class App extends Component {
 		setTimeout(() => this.setState({ alert: null }), 2000);
 	};
 	render() {
+		// 	// get more users
+		// getUsers = async (text, currentPage) => {
+		// 	this.setState({ loading: true });
+		// 	const res = await axios.get(
+		// 		`https://api.github.com/search/users?q=${text}&client_id=${githubClientId}&client_secret=${githubClientSecret}?_page=per_page=30&page=2>;rel="next",`
+		// 	);
+		// 	this.setState({
+		// 		users: res.data.items,
+		// 		count: res.data.total_count,
+		// 		loading: false,
+		// 	});
+		// 	return data;
+		// };
 
-	// 	// get more users
-	// getUsers = async (text, currentPage) => {
-	// 	this.setState({ loading: true });
-	// 	const res = await axios.get(
-	// 		`https://api.github.com/search/users?q=${text}&client_id=${githubClientId}&client_secret=${githubClientSecret}?_page=per_page=30&page=2>;rel="next",`
-	// 	);
-	// 	this.setState({
-	// 		users: res.data.items,
-	// 		count: res.data.total_count,
-	// 		loading: false,
-	// 	});
-	// 	return data;
-	// };
+		// const handlePageClick = (data) => {
+		// 	console.log(data.selected);
+		// 	letcurrentPage = data.selected + 1
 
-	// const handlePageClick = (data) => {
-	// 	console.log(data.selected);
-	// 	letcurrentPage = data.selected + 1
+		// const getUsersfromGithub = await getUsers(text, currentPage);
+		// setUsers(getUsersfromGithub);
 
-	// const getUsersfromGithub = await getUsers(text, currentPage);
-	// setUsers(getUsersfromGithub);
-
-	// }; 
+		// };
 		const { users, user, repos, loading, count } = this.state;
 		return (
 			<Router>
@@ -143,8 +136,8 @@ class App extends Component {
 												showClear={users.length > 0 ? true : false}
 												setAlert={this.setAlert}
 											/>
-											<p className="text-white">Total Result: {count ?? 0}</p>
-											<ReactPaginate
+											<p className='text-white'>Total Result: {count ?? 0}</p>
+											{/* <ReactPaginate
 												previousLabel={"previous"}
 												nextLabel={"next"}
 												breakLabel={"..."}
@@ -162,7 +155,7 @@ class App extends Component {
 												breakClassName='page-item'
 												breakLinkClassName='page-link'
 												activeClassName='active'
-											/>
+											/> */}
 											<Users loading={loading} users={users} />
 										</div>
 									</Fragment>
@@ -190,6 +183,5 @@ class App extends Component {
 		);
 	}
 }
-
 
 export default App;
